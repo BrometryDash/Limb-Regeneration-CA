@@ -62,3 +62,130 @@ r = \sqrt{(x - x_c)^2 + (y - y_c)^2}
 $$
 
 Layer definition:
+r ≤ 15        → Bone
+15 < r ≤ 38   → Muscle
+38 < r ≤ 42   → Skin
+r > 42        → Empty
+Initial vessel density in muscle: p=0.08
+
+---
+
+## Evolution Rules
+---
+
+### Rule 1 — Tissue Regrowth
+
+If a neighboring site is non-empty:
+
+$$
+C_{t+1}(x,y) = Tissue \quad \text{if} \quad R < P_{growth}
+$$
+
+Parameter: $P_{growth}= 0.55$
+Cells differentiate by radial position.
+
+---
+
+### Rule 2 — Angiogenesis
+
+If neighbor is Vessel:
+
+$$
+C_{t+1}(x,y) = Vessel \quad \text{if} \quad R < P_{vessel}
+$$
+
+Parameter: $P_{vessel}=0.10$
+Vessel sprouting is ~5× slower than tissue proliferation.
+
+This temporal lag drives pathology.
+
+---
+
+### Rule 3 — Necrosis
+
+If Muscle lacks vascular neighbor:
+
+$$
+C_{t+1}(x,y) = Necrosis \quad \text{if} \quad R < P_{necrosis}
+$$
+
+Parameter: $P_{necrosis}=0.04$
+Prolonged ischemia almost guarantees tissue death.
+
+---
+
+### Rule 4 — Scar Formation
+Necrosis → Scar with $P_{scar} = 0.20$
+Scar is irreversible.
+
+---
+
+## Injury Event
+
+At timestep: t=30
+A wedge-shaped region is removed, resetting cells to Empty.
+
+This creates:
+
+- Moving boundary
+- Hypoxic gap
+- Competition between growth and perfusion
+
+---
+
+# Emergent Dynamics
+
+Because: $P_{vessel} << P_{growth}$
+The regeneration front advances faster than oxygen delivery.
+
+This mismatch generates:
+
+- Patchy scar regions
+- Isolated necrotic islands
+- Nonuniform vessel penetration
+
+Regenerative failure is therefore a:
+
+> Spatio-temporal synchronization problem.
+
+Increasing `P_vessel` (analogous to VEGF enhancement) improves healing.
+
+---
+
+# Visual Results
+
+## Initial Configuration
+
+<p align="center">
+  <img src="assets/initial.png" width="450">
+</p>
+
+---
+
+## Injury Applied
+
+<p align="center">
+  <img src="assets/injury.png" width="450">
+</p>
+
+---
+
+## Healing Progression
+
+<p align="center">
+  <img src="assets/healing.gif" width="600">
+</p>
+
+---
+
+## Simulation Phases
+
+| Phase | Behavior |
+|-------|----------|
+| Early | Rapid regrowth into wound |
+| Mid | Vessel lag → hypoxia |
+| Late | Necrotic transition |
+| Final | Scar-dominated closure |
+
+---
+
