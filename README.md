@@ -1,7 +1,7 @@
-# Stochastic Tissue Regeneration on a Cellular Lattice
+# Stochastic Tissue Regeneration using Cellular Automaton
 **From Local Hypoxia to Global Scarring**
 
-This model is a high-resolution stochastic simulation framework that models vascularized tissue regeneration as a **Coupled Cellular Automaton**.  
+This model is a high-resolution stochastic simulation framework that models vascularized tissue regeneration as a **Cellular Automaton**.  
 
 Instead of solving global reaction–diffusion equations, the model demonstrates how complex regenerative outcomes emerge from **localized nearest-neighbor interaction rules** governing proliferation, angiogenesis, ischemia, and fibrosis.
 
