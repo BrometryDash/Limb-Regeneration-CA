@@ -157,7 +157,8 @@ Increasing `P_vessel` (analogous to VEGF enhancement) improves healing.
 ## Initial Configuration
 
 <p align="center">
-  <img src="assets/initial.png" width="450">
+  <img src=""CA Files/Step 29.png" width="450">
+  
 </p>
 
 ---
